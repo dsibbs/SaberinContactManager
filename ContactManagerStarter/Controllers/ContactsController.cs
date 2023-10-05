@@ -148,37 +148,8 @@ namespace ContactManager.Controllers
             await _context.SaveChangesAsync();
             await _hubContext.Clients.All.SendAsync("Update");
 
-            SendEmailNotification(contact.Id);
-
             return Ok();
         }
-
-        private void SendEmailNotification(Guid contactId)
-        {
-            var message = new MimeMessage();
-
-            message.From.Add(new MailboxAddress("noreply", "noreply@contactmanager.com"));
-            message.To.Add(new MailboxAddress("SysAdmin", "Admin@contactmanager.com"));
-            message.Subject = "ContactManager System Alert";
-
-            message.Body = new TextPart("plain")
-            {
-                Text = "Contact with id:" + contactId.ToString() +" was updated"
-            };
-
-            using (var client = new SmtpClient())
-            {
-                // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
-                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-
-                client.Connect("127.0.0.1", 25, false);
-
-                client.Send(message);
-                client.Disconnect(true);
-            }
-
-        }
-
     }
 
 }

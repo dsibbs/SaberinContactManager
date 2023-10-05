@@ -3,6 +3,7 @@ using ContactManager.Hubs;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using ContactManagerStarter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +17,7 @@ builder.Services.AddRazorPages()
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
                 options
-                    .UseSqlServer(builder.Configuration.GetConnectionString("ContactDb"),
-                        opts => opts.CommandTimeout(600)));
+                    .UseInMemoryDatabase(databaseName: "ContactManagerDb"));
 
 builder.Services.AddSignalR();
 
@@ -34,7 +34,10 @@ if (!app.Environment.IsDevelopment())
 using (var scope = app.Services.CreateScope())
 {
     var dataContext = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
-    dataContext.Database.Migrate();
+
+    dataContext.Database.EnsureCreated();
+
+    Seeder.Initialize(dataContext);
 }
 
 app.UseHttpsRedirection();
