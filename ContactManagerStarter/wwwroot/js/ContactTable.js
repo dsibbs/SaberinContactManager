@@ -35,7 +35,7 @@ $(function () {
         let emailAddressType = $('#newEmailAddressType').val();
         let emailTypeClass;
 
-        if (emailAddressType === "Personal") {
+        if (emailAddressType === "Primary") {
             emailTypeClass = "badge-primary"; //blue badge
         } else {
             emailTypeClass = "badge-success"; //green badge

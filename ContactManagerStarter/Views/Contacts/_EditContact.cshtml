@@ -44,7 +44,7 @@
                         {
                             <li class="list-group-item emailListItem" data-email="@emailAddress.Email" data-type="@emailAddress.Type">
                                 @{
-                                    if (emailAddress.Type == EmailType.Personal)
+                                    if (emailAddress.Type == EmailType.Primary)
                                     {
                                         <span class="badge badge-primary m-l-10"> @emailAddress.Type</span>
                                     }
@@ -74,6 +74,7 @@
                 <select id="newEmailAddressType" class="form-control">
                     <option value="Personal">Personal</option>
                     <option value="Business">Business</option>
+                    <option value="Primary">Primary</option>
                 </select>
             </div>
             <div class="form-group col-md-2">
