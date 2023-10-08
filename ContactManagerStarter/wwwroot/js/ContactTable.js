@@ -146,6 +146,11 @@ $(function () {
                 $('#invalidLastNameFeedback').show();
                 isValid = false;
             }
+            if (data.emailAddress != "") {
+                $('#newEmailAddress').addClass("invalidInput");
+                $('#emailNotAdded').show();
+                isValid = false;
+            }
 
             return isValid;
         }
@@ -156,6 +161,7 @@ $(function () {
             FirstName: $("#editContactFirstName").val(),
             LastName: $("#editContactLastName").val(),
             DOB: $("#editContactDOB").val(),
+            EmailAddress: $('#newEmailAddress').val(),
             Emails: getEmailAddresses(),
             Addresses: getAddresses()
         };
