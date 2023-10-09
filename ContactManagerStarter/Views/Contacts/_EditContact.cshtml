@@ -5,7 +5,14 @@
         <div class="row">
             <div class="form-group col-lg-2">
                 <label>Title*</label>
-                <input id="editContactTitle" type="text" class="form-control" value="@(Model.Title != null ? @Model.Title : string.Empty)">
+
+            <select id="editContactTitle" class="form-control">
+                    <option value="Mr.">Mr</option>
+                    <option value="Mrs.">Mrs</option>
+                    <option value="Ms.">Ms</option>
+                    <option value="Dr.">Dr</option>
+                </select>
+            
                 <div id="invalidTitleFeedback" class="invalidMessage">
                     Please provide a Title.
                 </div>

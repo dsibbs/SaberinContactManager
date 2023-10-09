@@ -19,7 +19,7 @@ namespace ContactManagerStarter
                     FirstName = "Bill",
                     LastName = "Gates",
                     DOB = new DateTime(1960, 05, 01),
-                    PrimaryEmail = ""
+                    PrimaryEmail = "Bill@gates.com"
                 };
 
                 var steve =
@@ -30,7 +30,7 @@ namespace ContactManagerStarter
                         FirstName = "Steve",
                         LastName = "Jobs",
                         DOB = new DateTime(1950, 09, 21),
-                        PrimaryEmail = ""
+                        PrimaryEmail = "Steve@Jobs.com"
                     };
 
                 var sundar =
@@ -41,7 +41,7 @@ namespace ContactManagerStarter
                         FirstName = "Sundar",
                         LastName = "Pichai",
                         DOB = new DateTime(1980, 01, 11),
-                        PrimaryEmail=""
+                        PrimaryEmail= "SundarPichai@gmail.com"
                     };
 
 
