@@ -12,6 +12,7 @@ namespace ContactManager.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DOB { get; set; }
+        public string PrimaryEmail { get; set; }
         public List<EmailViewModel> Emails { get; set; } = new List<EmailViewModel>();
         public List<AddressViewModel> Addresses { get; set; } = new List<AddressViewModel>();
 

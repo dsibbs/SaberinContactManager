@@ -18,7 +18,8 @@ namespace ContactManagerStarter
                     Title = "Mr.",
                     FirstName = "Bill",
                     LastName = "Gates",
-                    DOB = new DateTime(1960, 05, 01)
+                    DOB = new DateTime(1960, 05, 01),
+                    PrimaryEmail = ""
                 };
 
                 var steve =
@@ -28,7 +29,8 @@ namespace ContactManagerStarter
                         Title = "Mr.",
                         FirstName = "Steve",
                         LastName = "Jobs",
-                        DOB = new DateTime(1950, 09, 21)
+                        DOB = new DateTime(1950, 09, 21),
+                        PrimaryEmail = ""
                     };
 
                 var sundar =
@@ -38,7 +40,8 @@ namespace ContactManagerStarter
                         Title = "Mr.",
                         FirstName = "Sundar",
                         LastName = "Pichai",
-                        DOB = new DateTime(1980, 01, 11)
+                        DOB = new DateTime(1980, 01, 11),
+                        PrimaryEmail=""
                     };
 
 
@@ -50,7 +53,8 @@ namespace ContactManagerStarter
                         Id = new Guid("5111f412-a7f4-4169-bb27-632687569ccd"),
                         Email = "Bill@gates.com",
                         Type = EmailType.Personal,
-                        Contact = bill
+                        Contact = bill,
+                        
                     },
 
                     new EmailAddress

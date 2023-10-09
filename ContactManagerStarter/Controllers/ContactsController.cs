@@ -65,6 +65,7 @@ namespace ContactManager.Controllers
                 FirstName = contact.FirstName,
                 LastName = contact.LastName,
                 DOB = contact.DOB,
+                PrimaryEmail = contact.PrimaryEmail,
                 EmailAddresses = contact.EmailAddresses,
                 Addresses = contact.Addresses
             };
@@ -95,7 +96,7 @@ namespace ContactManager.Controllers
         public async Task<IActionResult> SaveContact([FromBody]SaveContactViewModel model)
         {
             var contact = model.ContactId == Guid.Empty
-                ? new Contact { Title = model.Title, FirstName = model.FirstName, LastName = model.LastName, DOB = model.DOB }
+                ? new Contact { Title = model.Title, FirstName = model.FirstName, LastName = model.LastName, DOB = model.DOB, PrimaryEmail = model.PrimaryEmail }
                 : await _context.Contacts.Include(x => x.EmailAddresses).Include(x => x.Addresses).FirstOrDefaultAsync(x => x.Id == model.ContactId);
 
             if (contact == null)
@@ -106,7 +107,7 @@ namespace ContactManager.Controllers
             _context.EmailAddresses.RemoveRange(contact.EmailAddresses);
             _context.Addresses.RemoveRange(contact.Addresses);
 
-
+            var found = true;
             foreach (var email in model.Emails)
             {
                 contact.EmailAddresses.Add(new EmailAddress
@@ -115,7 +116,17 @@ namespace ContactManager.Controllers
                     Email = email.Email,
                     Contact = contact
                 });
+                if (found)
+                {
+                    model.PrimaryEmail = email.Email;
+                    found = false;
+                }
+                if (email.Type==EmailType.Primary)
+                {
+                    model.PrimaryEmail = email.Email;
+                }
             }
+
 
             foreach (var address in model.Addresses)
             {
@@ -134,6 +145,7 @@ namespace ContactManager.Controllers
             contact.FirstName = model.FirstName;
             contact.LastName = model.LastName;
             contact.DOB = model.DOB;
+            contact.PrimaryEmail = model.PrimaryEmail;
 
             if (model.ContactId == Guid.Empty)
             {
