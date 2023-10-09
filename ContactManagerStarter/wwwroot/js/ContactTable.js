@@ -151,6 +151,11 @@ $(function () {
                 $('#emailNotAdded').show();
                 isValid = false;
             }
+            if (data.Address != "") {
+                $('#Address').addClass("invalidInput");
+                $('#addressNotAdded').show();
+                isValid = false;
+            }
 
             return isValid;
         }
@@ -161,7 +166,8 @@ $(function () {
             FirstName: $("#editContactFirstName").val(),
             LastName: $("#editContactLastName").val(),
             DOB: $("#editContactDOB").val(),
-            EmailAddress: $('#newEmailAddress').val(),
+            emailAddress: $('#newEmailAddress').val(),
+            Address: ($('#newAddressStreet1').val() + $('#newAddressStreet2').val() + $('#newAddressCity').val() + $('#newAddressState').val() + $('#newAddressZip').val()),
             Emails: getEmailAddresses(),
             Addresses: getAddresses()
         };
