@@ -27,25 +27,31 @@ namespace ContactManager.Controllers
 
         public async Task<IActionResult> DeleteContact(Guid id)
         {
-            var contactToDelete = await _context.Contacts
-                .Include(x => x.EmailAddresses)
-                .FirstOrDefaultAsync(x => x.Id == id);
-
-            if (contactToDelete == null)
+            try
             {
-                return BadRequest();
+                var contactToDelete = await _context.Contacts
+                    .Include(x => x.EmailAddresses)
+                    .FirstOrDefaultAsync(x => x.Id == id);
+
+                if (contactToDelete == null)
+                {
+                    return BadRequest();
+                }
+
+                _context.EmailAddresses.RemoveRange(contactToDelete.EmailAddresses);
+                _context.Contacts.Remove(contactToDelete);
+
+                await _context.SaveChangesAsync();
+
+                await _hubContext.Clients.All.SendAsync("Update");
+
+                return Ok();
             }
-
-            _context.EmailAddresses.RemoveRange(contactToDelete.EmailAddresses);
-            _context.Contacts.Remove(contactToDelete);
-
-            await _context.SaveChangesAsync();
-
-            await _hubContext.Clients.All.SendAsync("Update");
-
-            return Ok();
+            catch (Exception ex)
+            {
+                return StatusCode(500,"Deleting contact error- "+ ex.Message);
+            }
         }
-
         public async Task<IActionResult> EditContact(Guid id)
         {
             var contact = await _context.Contacts

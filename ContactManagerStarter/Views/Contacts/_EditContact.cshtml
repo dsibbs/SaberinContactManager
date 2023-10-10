@@ -33,7 +33,7 @@
             </div>
             <div class="form-group col-lg-4">
                 <label>Date of Birth*</label>
-                <input id="editContactDOB" class="form-control" value="@(Model.DOB != null ? @Model.DOB.ToString("MM-dd-yyyy") : string.Empty)" type = "date">
+                <input id="editContactDOB" class="form-control" value="@(Model.DOB != null ? @Model.DOB.ToString("MM-dd-yyyy") : string.Empty)" type = "text">
                 <div id="invalidDOBFeedback" class="invalidMessage">
                     Please provide a valid Date of Birth.
                 </div>
@@ -174,4 +174,6 @@
             <button class="btn btn-default" data-dismiss="modal">Cancel</button>
             <button id="saveContactButton" class="btn btn-success">Save</button>
         </div>
+
+
     </div>

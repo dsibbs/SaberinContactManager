@@ -205,6 +205,14 @@ $(function () {
             success: function (data) {
                 $('#EditContactModalContent').html(data);
                 $('#modal-editContact').modal('show');
+                $("#editContactDOB").datepicker({
+                            dateFormat: "mm-dd-yy", // You can adjust the date format as needed
+                            changeMonth: true,
+                            changeYear: true,
+                        });
+
+               
+
                 $("#ServerErrorAlert").hide();
             },
             error: function () {
