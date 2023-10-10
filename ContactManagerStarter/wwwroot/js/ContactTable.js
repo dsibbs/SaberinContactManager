@@ -13,10 +13,12 @@ $(function () {
             contentType: "application/json; charset=utf-8",
             data: { "Id": id },
             datatype: "json",
+
             success: function (data) {
                 $('#EditContactModalContent').html(data);
                 $('#modal-editContact').modal('show');
                 $("#ServerErrorAlert").hide();
+
             },
             error: function () {
                 $("#ServerErrorAlert").show();
@@ -109,6 +111,7 @@ $(function () {
     });
 
     $(document).on("click", "#saveContactButton", function () {
+
         function getEmailAddresses() {
             return $(".emailListItem").map(function () {
                 return {
