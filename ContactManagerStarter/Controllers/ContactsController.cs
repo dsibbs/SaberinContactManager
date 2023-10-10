@@ -90,9 +90,9 @@ namespace ContactManager.Controllers
         }
 
         public IActionResult Index()
-            {
-                return View();
-            }
+        {
+            return View();
+        }
 
         public IActionResult NewContact()
         {
@@ -100,7 +100,7 @@ namespace ContactManager.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveContact([FromBody]SaveContactViewModel model)
+        public async Task<IActionResult> SaveContact([FromBody] SaveContactViewModel model)
         {
             var contact = model.ContactId == Guid.Empty
                 ? new Contact { Title = model.Title, FirstName = model.FirstName, LastName = model.LastName, DOB = model.DOB, PrimaryEmail = model.PrimaryEmail }
@@ -128,7 +128,7 @@ namespace ContactManager.Controllers
                     model.PrimaryEmail = email.Email;
                     found = false;
                 }
-                if (email.Type==EmailType.Primary)
+                if (email.Type == EmailType.Primary)
                 {
                     model.PrimaryEmail = email.Email;
                 }

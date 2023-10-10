@@ -13,7 +13,7 @@ namespace ContactManager.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DOB { get; set; }
-        public string PrimaryEmail { get; set; }
+        public string? PrimaryEmail { get; set; }
         public List<EmailAddress> EmailAddresses { get; set; }
         public List<Address> Addresses { get; set; }
     }
